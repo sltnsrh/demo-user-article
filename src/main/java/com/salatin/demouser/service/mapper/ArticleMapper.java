@@ -3,7 +3,7 @@ package com.salatin.demouser.service.mapper;
 import com.salatin.demouser.model.Article;
 import com.salatin.demouser.model.Color;
 import com.salatin.demouser.model.dto.request.ArticleCreationRequestDto;
-import com.salatin.demouser.model.dto.response.ArticleCreationResponseDto;
+import com.salatin.demouser.model.dto.response.ArticleResponseDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
@@ -15,7 +15,7 @@ public interface ArticleMapper {
     @Mapping(target = "color", source = "color", qualifiedByName = "toEnumColor")
     Article toModel(ArticleCreationRequestDto requestDto);
 
-    ArticleCreationResponseDto toDto(Article article);
+    ArticleResponseDto toDto(Article article);
 
     @Named("toEnumColor")
     default Color toEnumColor(String color) {

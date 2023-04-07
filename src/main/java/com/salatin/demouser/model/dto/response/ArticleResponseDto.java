@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ArticleCreationResponseDto {
+public class ArticleResponseDto {
     private Long id;
     private String text;
     private String color;

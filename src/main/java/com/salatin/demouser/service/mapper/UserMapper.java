@@ -3,7 +3,7 @@ package com.salatin.demouser.service.mapper;
 import com.salatin.demouser.model.Article;
 import com.salatin.demouser.model.User;
 import com.salatin.demouser.model.dto.request.UserRegistrationRequestDto;
-import com.salatin.demouser.model.dto.response.UserRegistrationResponseDto;
+import com.salatin.demouser.model.dto.response.UserResponseDto;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,7 +22,7 @@ public interface UserMapper {
     User toModel(UserRegistrationRequestDto requestDto, PasswordEncoder passwordEncoder);
 
     @Mapping(target = "articleIds", source = "articles", qualifiedByName = "articlesToIds")
-    UserRegistrationResponseDto toDto(User user);
+    UserResponseDto toDto(User user);
 
     @Named("encodePassword")
     default String encodePassword(String password, PasswordEncoder encoder) {

@@ -2,7 +2,7 @@ package com.salatin.demouser.controller;
 
 import com.salatin.demouser.model.User;
 import com.salatin.demouser.model.dto.request.UserRegistrationRequestDto;
-import com.salatin.demouser.model.dto.response.UserRegistrationResponseDto;
+import com.salatin.demouser.model.dto.response.UserResponseDto;
 import com.salatin.demouser.service.UserService;
 import com.salatin.demouser.service.mapper.UserMapper;
 import java.util.List;
@@ -28,7 +28,7 @@ public class UserController {
     private final PasswordEncoder passwordEncoder;
 
     @PostMapping
-    public ResponseEntity<UserRegistrationResponseDto> register(
+    public ResponseEntity<UserResponseDto> register(
         @RequestBody UserRegistrationRequestDto requestDto) {
         User userToSave = userMapper.toModel(requestDto, passwordEncoder);
         User savedUser = userService.save(userToSave);
@@ -38,9 +38,9 @@ public class UserController {
 
     @GetMapping
     @RequestMapping("/by-age")
-    public ResponseEntity<List<UserRegistrationResponseDto>> getAllWithAgeGreaterThan(
+    public ResponseEntity<List<UserResponseDto>> getAllWithAgeGreaterThan(
         @NonNull @RequestParam short minAge) {
-        List<UserRegistrationResponseDto> usersList =
+        List<UserResponseDto> usersList =
             userService.getUsersWithAgeGte(minAge).stream()
                 .map(userMapper::toDto)
                 .collect(Collectors.toList());
@@ -50,10 +50,10 @@ public class UserController {
 
     @GetMapping
     @RequestMapping("/by-article-color")
-    public ResponseEntity<List<UserRegistrationResponseDto>> getAllWithArticleColor(
+    public ResponseEntity<List<UserResponseDto>> getAllWithArticleColor(
         @NonNull @RequestParam String articleColor
     ) {
-        List<UserRegistrationResponseDto> usersList =
+        List<UserResponseDto> usersList =
             userService.getAllWithArticleColor(articleColor).stream()
                 .map(userMapper::toDto)
                 .collect(Collectors.toList());

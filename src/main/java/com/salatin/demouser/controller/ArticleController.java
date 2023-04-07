@@ -2,7 +2,7 @@ package com.salatin.demouser.controller;
 
 import com.salatin.demouser.model.Article;
 import com.salatin.demouser.model.dto.request.ArticleCreationRequestDto;
-import com.salatin.demouser.model.dto.response.ArticleCreationResponseDto;
+import com.salatin.demouser.model.dto.response.ArticleResponseDto;
 import com.salatin.demouser.service.ArticleService;
 import com.salatin.demouser.service.mapper.ArticleMapper;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +21,7 @@ public class ArticleController {
     private final ArticleMapper articleMapper;
 
     @PostMapping
-    public ResponseEntity<ArticleCreationResponseDto> create(
+    public ResponseEntity<ArticleResponseDto> create(
         @RequestBody ArticleCreationRequestDto requestDto) {
         Article articleToSave = articleMapper.toModel(requestDto);
         Article savedArticle = articleService.save(articleToSave);
