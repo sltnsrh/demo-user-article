@@ -10,16 +10,24 @@ import java.util.stream.Collectors;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Mapper(componentModel = "spring")
 public interface UserMapper {
 
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "password",
+        expression = "java(encodePassword(requestDto.getPassword(), passwordEncoder))")
     @Mapping(target = "articles", expression = "java(createList())")
-    User toModel(UserRegistrationRequestDto requestDto);
+    User toModel(UserRegistrationRequestDto requestDto, PasswordEncoder passwordEncoder);
 
     @Mapping(target = "articleIds", source = "articles", qualifiedByName = "articlesToIds")
     UserRegistrationResponseDto toDto(User user);
+
+    @Named("encodePassword")
+    default String encodePassword(String password, PasswordEncoder encoder) {
+        return encoder.encode(password);
+    }
 
     default List<Article> createList() {
         return new ArrayList<>();
