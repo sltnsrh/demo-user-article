@@ -18,7 +18,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getUsersWithAgeGreaterThan(short age) {
-        return userRepository.findAllUsersWithAgeGreaterThan(age);
+    public List<User> getUsersWithAgeGreaterThan(short minAge) {
+        return userRepository.findAllUsersWithAgeGreaterThan(minAge);
+    }
+
+    @Override
+    public List<User> getAllWithArticleColor(String color) {
+        return userRepository.findAllUsersWithArticleColor(color.toUpperCase());
     }
 }

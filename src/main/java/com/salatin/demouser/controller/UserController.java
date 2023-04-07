@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.lang.NonNull;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,10 +37,24 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<List<UserRegistrationResponseDto>> getUsersWithAgeGreaterThan(
-        @RequestParam short age) {
+    @RequestMapping("/byAge")
+    public ResponseEntity<List<UserRegistrationResponseDto>> getAllWithAgeGreaterThan(
+        @NonNull @RequestParam short minAge) {
         List<UserRegistrationResponseDto> result =
-            userService.getUsersWithAgeGreaterThan(age).stream()
+            userService.getUsersWithAgeGreaterThan(minAge).stream()
+                .map(userMapper::toDto)
+                .collect(Collectors.toList());
+
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
+    @GetMapping
+    @RequestMapping("/byArticleColor")
+    public ResponseEntity<List<UserRegistrationResponseDto>> getAllWithArticleColor(
+        @NonNull @RequestParam String articleColor
+    ) {
+        List<UserRegistrationResponseDto> result =
+            userService.getAllWithArticleColor(articleColor).stream()
                 .map(userMapper::toDto)
                 .collect(Collectors.toList());
 
