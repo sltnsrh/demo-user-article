@@ -3,6 +3,7 @@ package com.salatin.demouser.service.impl;
 import com.salatin.demouser.model.User;
 import com.salatin.demouser.repository.UserRepository;
 import com.salatin.demouser.service.UserService;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,5 +15,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public User save(User user) {
         return userRepository.save(user);
+    }
+
+    @Override
+    public List<User> getUsersWithAgeGreaterThan(short age) {
+        return userRepository.findAllUsersWithAgeGreaterThan(age);
     }
 }
