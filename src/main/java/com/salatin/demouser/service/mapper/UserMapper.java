@@ -14,7 +14,7 @@ import org.mapstruct.Named;
 public interface UserMapper {
 
     @Mapping(target = "id", ignore = true)
-    User toUser(UserRegistrationRequestDto requestDto);
+    User toModel(UserRegistrationRequestDto requestDto);
 
     @Mapping(target = "articleIds", source = "articles", qualifiedByName = "articlesToIds")
     UserRegistrationResponseDto toDto(User user);
