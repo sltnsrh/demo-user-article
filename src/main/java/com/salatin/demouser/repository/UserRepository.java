@@ -10,11 +10,17 @@ import org.springframework.stereotype.Repository;
 public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query(value = "from User u where u.age > :age")
-    List<User> findAllUsersWithAgeGreaterThan(short age);
+    List<User> findAllUsersWithAgeGte(short age);
 
-    @Query(value = "SELECT  u.id, u.name, u.age, u.email, u.password FROM users u\n" +
-        "JOIN users_articles ua ON u.id = ua.user_id\n" +
-        "JOIN articles a ON a.id = ua.article_id\n" +
-        "WHERE a.color = :color", nativeQuery = true)
+    @Query(value = "SELECT  u.id, u.name, u.age, u.email, u.password FROM users u "
+        + "JOIN users_articles ua ON u.id = ua.user_id "
+        + "JOIN articles a ON a.id = ua.article_id "
+        + "WHERE a.color = :color", nativeQuery = true)
     List<User> findAllUsersWithArticleColor(String color);
+
+    @Query(value = "SELECT u.id, u.name, u.age, u.email, u.password FROM users u "
+        + "JOIN users_articles ua ON u.id = ua.user_id "
+        + "GROUP BY ua.user_id "
+        + "HAVING COUNT(ua.article_id) > :count", nativeQuery = true)
+    List<User> findAllUsersWithArticleCountGte(int count);
 }
