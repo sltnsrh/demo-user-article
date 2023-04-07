@@ -61,4 +61,13 @@ public class UserController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
+    @GetMapping
+    @RequestMapping("/names/by-article-count")
+    public ResponseEntity<List<String>> findAllNamesByArticleCount(
+        @RequestParam(defaultValue = "3") int articleCountGte
+    ) {
+        List<String> nameslist = userService.getAllNamesWithArticleCountGte(articleCountGte);
+
+        return new ResponseEntity<>(nameslist, HttpStatus.OK);
+    }
 }

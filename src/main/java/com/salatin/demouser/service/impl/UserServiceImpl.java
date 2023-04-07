@@ -4,6 +4,7 @@ import com.salatin.demouser.model.User;
 import com.salatin.demouser.repository.UserRepository;
 import com.salatin.demouser.service.UserService;
 import java.util.List;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -25,5 +26,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getAllWithArticleColor(String color) {
         return userRepository.findAllUsersWithArticleColor(color.toUpperCase());
+    }
+
+    @Override
+    public List<String> getAllNamesWithArticleCountGte(int articleCount) {
+        return userRepository.findAll().stream()
+            .filter(u -> u.getArticles().size() > articleCount)
+            .map(User::getName)
+            .collect(Collectors.toList());
     }
 }

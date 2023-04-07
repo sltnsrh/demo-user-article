@@ -9,4 +9,6 @@ public interface UserService {
     List<User> getUsersWithAgeGreaterThan(short minAge);
 
     List<User> getAllWithArticleColor(String color);
+
+    List<String> getAllNamesWithArticleCountGte(int articleCount);
 }
