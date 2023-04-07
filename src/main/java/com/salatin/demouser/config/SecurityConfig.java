@@ -19,7 +19,7 @@ public class SecurityConfig {
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             .and()
             .authorizeRequests()
-            .antMatchers("/h2console/**").permitAll()
+            .antMatchers("/**").permitAll()
             .anyRequest().authenticated()
             .and()
             .build();
