@@ -37,7 +37,7 @@ public class UserController {
     }
 
     @GetMapping
-    @RequestMapping("/byAge")
+    @RequestMapping("/by-age")
     public ResponseEntity<List<UserRegistrationResponseDto>> getAllWithAgeGreaterThan(
         @NonNull @RequestParam short minAge) {
         List<UserRegistrationResponseDto> result =
@@ -49,7 +49,7 @@ public class UserController {
     }
 
     @GetMapping
-    @RequestMapping("/byArticleColor")
+    @RequestMapping("/by-article-color")
     public ResponseEntity<List<UserRegistrationResponseDto>> getAllWithArticleColor(
         @NonNull @RequestParam String articleColor
     ) {
@@ -63,10 +63,10 @@ public class UserController {
 
     @GetMapping
     @RequestMapping("/names/by-article-count")
-    public ResponseEntity<List<String>> findAllNamesByArticleCount(
-        @RequestParam(defaultValue = "3") int articleCountGte
+    public ResponseEntity<List<String>> findAllNamesByArticleCountGte(
+        @RequestParam(name = "moreThan", defaultValue = "3") int count
     ) {
-        List<String> nameslist = userService.getAllNamesWithArticleCountGte(articleCountGte);
+        List<String> nameslist = userService.getAllNamesWithArticleCountGte(count);
 
         return new ResponseEntity<>(nameslist, HttpStatus.OK);
     }
