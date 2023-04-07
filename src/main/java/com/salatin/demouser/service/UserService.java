@@ -10,5 +10,5 @@ public interface UserService {
 
     List<User> getAllWithArticleColor(String color);
 
-    List<String> getAllNamesWithArticleCountGte(int articleCount);
+    List<String> getAllNamesWithArticleCountGte(int count);
 }
