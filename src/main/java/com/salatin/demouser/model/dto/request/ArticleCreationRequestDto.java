@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ArticleCreationDto {
+public class ArticleCreationRequestDto {
     private String text;
     private String color;
 }
