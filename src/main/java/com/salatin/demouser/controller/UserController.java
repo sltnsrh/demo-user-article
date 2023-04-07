@@ -41,7 +41,7 @@ public class UserController {
     public ResponseEntity<List<UserRegistrationResponseDto>> getAllWithAgeGreaterThan(
         @NonNull @RequestParam short minAge) {
         List<UserRegistrationResponseDto> result =
-            userService.getUsersWithAgeGreaterThan(minAge).stream()
+            userService.getUsersWithAgeGte(minAge).stream()
                 .map(userMapper::toDto)
                 .collect(Collectors.toList());
 
@@ -66,7 +66,7 @@ public class UserController {
     public ResponseEntity<List<String>> findAllNamesByArticleCountGte(
         @RequestParam(name = "moreThan", defaultValue = "3") int count
     ) {
-        List<String> nameslist = userService.getAllNamesWithArticleCountGte(count);
+        List<String> nameslist = userService.getAllUserNamesWithArticleCountGte(count);
 
         return new ResponseEntity<>(nameslist, HttpStatus.OK);
     }

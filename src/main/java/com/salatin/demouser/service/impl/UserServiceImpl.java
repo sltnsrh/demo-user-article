@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getUsersWithAgeGreaterThan(short minAge) {
+    public List<User> getUsersWithAgeGte(short minAge) {
         return userRepository.findAllUsersWithAgeGte(minAge);
     }
 
@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<String> getAllNamesWithArticleCountGte(int count) {
+    public List<String> getAllUserNamesWithArticleCountGte(int count) {
         return userRepository.findAllUsersWithArticleCountGte(count).stream()
             .map(User::getName)
             .collect(Collectors.toList());

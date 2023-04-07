@@ -6,9 +6,9 @@ import java.util.List;
 public interface UserService {
     User save(User user);
 
-    List<User> getUsersWithAgeGreaterThan(short minAge);
+    List<User> getUsersWithAgeGte(short minAge);
 
     List<User> getAllWithArticleColor(String color);
 
-    List<String> getAllNamesWithArticleCountGte(int count);
+    List<String> getAllUserNamesWithArticleCountGte(int count);
 }
