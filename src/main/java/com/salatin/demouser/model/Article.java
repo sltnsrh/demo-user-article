@@ -19,7 +19,7 @@ import lombok.ToString;
 public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private String text;
     @Enumerated(EnumType.STRING)
     private Color color;
