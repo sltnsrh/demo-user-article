@@ -37,7 +37,7 @@ public class UserController {
     }
 
     @GetMapping
-    @RequestMapping("/by-age")
+    @RequestMapping("/by-min-age")
     public ResponseEntity<List<UserResponseDto>> getAllWithAgeGreaterThan(
         @NonNull @RequestParam short minAge) {
         List<UserResponseDto> usersList =
@@ -62,7 +62,7 @@ public class UserController {
     }
 
     @GetMapping
-    @RequestMapping("/names/by-article-count")
+    @RequestMapping("/names/by-min-article-count")
     public ResponseEntity<List<String>> findAllNamesByArticleCountGte(
         @RequestParam(name = "moreThan", defaultValue = "3") int count
     ) {
