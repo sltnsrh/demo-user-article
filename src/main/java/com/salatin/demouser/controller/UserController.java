@@ -47,7 +47,7 @@ public class UserController {
     }
 
     @GetMapping
-    @RequestMapping("/names/by-min-article-count")
+    @RequestMapping("/names/by-most-articles-created")
     public ResponseEntity<List<String>> findAllNamesByArticleCountGte(
         @RequestParam(name = "moreThan", defaultValue = "3") int count
     ) {
