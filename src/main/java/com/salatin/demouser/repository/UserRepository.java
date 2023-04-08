@@ -13,6 +13,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query(value = "from User u where u.age > :age")
     List<User> findAllUsersWithAgeGte(short age);
 
+    @Query(value = "from User u left join fetch u.articles where u.email = :email")
     Optional<User> findByEmail(String email);
 
     @Query(value = "SELECT  u.id, u.name, u.age, u.email, u.password FROM users u "

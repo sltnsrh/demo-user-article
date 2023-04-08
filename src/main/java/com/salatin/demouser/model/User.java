@@ -2,6 +2,7 @@ package com.salatin.demouser.model;
 
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,7 +26,9 @@ public class User {
     private Long id;
     private String name;
     private short age;
+    @Column(unique = true, nullable = false)
     private String email;
+    @ToString.Exclude
     private String password;
     @OneToMany(cascade = CascadeType.REMOVE)
     @JoinTable(name = "users_articles",
