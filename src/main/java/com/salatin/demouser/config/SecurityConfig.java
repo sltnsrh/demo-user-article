@@ -14,14 +14,15 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
     private static final String[] AUTH_WHITELIST = {
         "/register",
-        "/login"
+        "/login",
+        "/h2console/**"
     };
 
     private final JwtTokenFilter jwtTokenFilter;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
+        return http
             .csrf().disable()
             .headers().frameOptions().disable()
             .and()
@@ -30,10 +31,9 @@ public class SecurityConfig {
             .and()
             .authorizeRequests()
             .antMatchers(AUTH_WHITELIST).permitAll()
-            .anyRequest().authenticated();
-
-        http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
-
-        return http.build();
+            .anyRequest().authenticated()
+            .and()
+            .addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class)
+            .build();
     }
 }
