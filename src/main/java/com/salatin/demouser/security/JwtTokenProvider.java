@@ -20,8 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Component
 @RequiredArgsConstructor
 public class JwtTokenProvider {
-    private static final int TOKEN_START_INDEX = 7;
-    private static final String BEARER_START = "Bearer ";
+    private static final String BEARER_TYPE = "Bearer ";
 
     private final UserDetailsService userDetailsService;
     private final UserService userService;
@@ -50,8 +49,8 @@ public class JwtTokenProvider {
     }
 
     public String resolveToken(String bearerToken) {
-        if (bearerToken != null && bearerToken.startsWith(BEARER_START)) {
-            return bearerToken.substring(TOKEN_START_INDEX);
+        if (bearerToken != null && bearerToken.startsWith(BEARER_TYPE)) {
+            return bearerToken.substring(BEARER_TYPE.length()).trim();
         }
         return null;
     }
