@@ -18,7 +18,7 @@ Spring Boot application with JWT-based security and H2 in-memory database, featu
 * Clone repository to your local
 * To build and run the project, navigate to the project directory and run the following commands:<br />
 `> mvn clean install`<br />
-`> mvnw spring-boot:run`
+`> mvn spring-boot:run`
 * Or you can run the app from your favorite IDE (such as IntelliJ IDEA, Eclipse, or NetBeans). 
 * This will start the application on port 8080.
 * After the starting you can open H2 DB interface by url: `http://localhost:8080/h2console`
